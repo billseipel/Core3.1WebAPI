@@ -29,7 +29,12 @@ namespace Core3dot1WebAPI
 
             builder.Populate(services);
 
-            // DI
+            // Dependency Injection steps:
+            // 1. Create Interface
+            // 2. Create class which implements interface
+            //      a. Add private interface member to class
+            //      b. Add interface to constructor & initialize member
+            //      c. Register type in ConfigureServices
             builder.RegisterType<ConfigRetriever>()
                 .As<IConfigRetriever>()
                 .WithParameter(new TypedParameter(typeof(IConfiguration), Configuration));
