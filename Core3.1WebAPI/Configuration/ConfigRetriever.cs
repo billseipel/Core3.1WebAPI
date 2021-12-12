@@ -17,7 +17,8 @@ namespace Core3dot1WebAPI.Configuration
         {
             var config = new Core3dot1WebAPIConfiguration()
             {
-                ThirdPartyAPI = Configuration["ThirdPartyAPIURL"]
+                ThirdPartyAPI = Configuration["ThirdPartyAPIURL"],
+                Summaries = Configuration["Summaries"]
             };
             return config;
         }

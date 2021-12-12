@@ -3,5 +3,6 @@
     public class Core3dot1WebAPIConfiguration
     {
         public string ThirdPartyAPI { get; set; }
+        public string Summaries { get; set; }
     }
 }

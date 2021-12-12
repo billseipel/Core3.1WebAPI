@@ -4,6 +4,8 @@ using Core3dot1WebAPI.Configuration;
 using Core3dot1WebAPI.Configuration.Interfaces;
 using Core3dot1WebAPI.Managers;
 using Core3dot1WebAPI.Managers.Interfaces;
+using Core3dot1WebAPI.Repositories;
+using Core3dot1WebAPI.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -44,6 +46,9 @@ namespace Core3dot1WebAPI
 
             builder.RegisterType<WeatherForecastManager>()
                 .As<IWeatherForecastManager>();
+
+            builder.RegisterType<WeatherForecastRepo>()
+                .As<IWeatherForecastRepo>();
 
             return new AutofacServiceProvider(builder.Build());
         }

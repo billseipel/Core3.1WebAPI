@@ -1,28 +1,22 @@
 ﻿using Core3dot1WebAPI.Managers.Interfaces;
 using Core3dot1WebAPI.Models;
-using System;
+using Core3dot1WebAPI.Repositories.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Core3dot1WebAPI.Managers
 {
     public class WeatherForecastManager : IWeatherForecastManager
     {
-        private static readonly string[] Summaries = new[]
-       {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+       private IWeatherForecastRepo WeatherForecastRepo { get; set; }
+
+        public WeatherForecastManager(IWeatherForecastRepo weatherforecastrepo)
+        {
+            WeatherForecastRepo = weatherforecastrepo;
+        }
 
         public IEnumerable<WeatherForecast> GetWeatherForecast()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return WeatherForecastRepo.GetWeatherForecast();
         }
     }
 }
