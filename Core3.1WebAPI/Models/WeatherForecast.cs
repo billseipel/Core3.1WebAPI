@@ -1,6 +1,6 @@
 using System;
 
-namespace Core3dot1WebAPI
+namespace Core3dot1WebAPI.Models
 {
     public class WeatherForecast
     {

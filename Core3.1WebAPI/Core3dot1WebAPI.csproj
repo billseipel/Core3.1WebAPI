@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Core3._1WebAPI</RootNamespace>
+    <RootNamespace>Core3dot1WebAPI</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

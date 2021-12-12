@@ -2,6 +2,10 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Core3dot1WebAPI.Configuration;
 using Core3dot1WebAPI.Configuration.Interfaces;
+using Core3dot1WebAPI.Managers;
+using Core3dot1WebAPI.Managers.Interfaces;
+using Core3dot1WebAPI.Repositories;
+using Core3dot1WebAPI.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,10 +33,22 @@ namespace Core3dot1WebAPI
 
             builder.Populate(services);
 
-            // DI
+            // Dependency Injection steps:
+            // 1. Create Interface
+            // 2. Create class which implements interface
+            //      a. Add private interface member to class
+            //      b. Add interface to constructor & initialize member
+            //      c. Register type in ConfigureServices
+
             builder.RegisterType<ConfigRetriever>()
                 .As<IConfigRetriever>()
                 .WithParameter(new TypedParameter(typeof(IConfiguration), Configuration));
+
+            builder.RegisterType<WeatherForecastManager>()
+                .As<IWeatherForecastManager>();
+
+            builder.RegisterType<WeatherForecastRepo>()
+                .As<IWeatherForecastRepo>();
 
             return new AutofacServiceProvider(builder.Build());
         }
