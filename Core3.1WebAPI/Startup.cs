@@ -1,33 +1,42 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Core3dot1WebAPI.Configuration;
+using Core3dot1WebAPI.Configuration.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Core3._1WebAPI
+namespace Core3dot1WebAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IWebHostEnvironment Environment { get; }
+        private IConfiguration Configuration { get; }
+
+        public Startup(IWebHostEnvironment env, IConfiguration config)
         {
-            Configuration = configuration;
+            Environment = env;
+            Configuration = config;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            ContainerBuilder builder = new ContainerBuilder();
             services.AddControllers();
+
+            builder.Populate(services);
+
+            // DI
+            builder.RegisterType<ConfigRetriever>()
+                .As<IConfigRetriever>()
+                .WithParameter(new TypedParameter(typeof(IConfiguration), Configuration));
+
+            return new AutofacServiceProvider(builder.Build());
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

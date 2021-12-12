@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core3.1WebAPI", "Core3.1WebAPI\Core3.1WebAPI.csproj", "{303454AA-40F6-4336-9468-1380B7E0E29E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core3dot1WebAPI", "Core3.1WebAPI\Core3dot1WebAPI.csproj", "{303454AA-40F6-4336-9468-1380B7E0E29E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

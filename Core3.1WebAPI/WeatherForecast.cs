@@ -1,6 +1,6 @@
 using System;
 
-namespace Core3._1WebAPI
+namespace Core3dot1WebAPI
 {
     public class WeatherForecast
     {
